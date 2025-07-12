@@ -2,21 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { assets, dummyCarData } from '../assets/assets';
 import Loader from '../components/Loader';
+import { useAppContext } from '../context/AppContext';
 
 const CarDetails = () => {
 
   const { id } = useParams();
-  const navigate = useNavigate();
   const [car, setCar] = useState(null)
-  const currency = import.meta.env.VITE_CURRENCY;
+  const {currency, navigate, cars, axios, pickupDate, setPickupDate, returnDate, setReturnDate} = useAppContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
   }
 
   useEffect(() => {
-    setCar(dummyCarData.find(car => car._id === id))
-  }, [id])
+    setCar(cars.find(car => car._id === id))
+  }, [cars,id])
   
   
 
