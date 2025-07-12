@@ -55,7 +55,7 @@ export const createBooking = async (req, res) => {
         //calculate price based on pickup and return date
         const picked = new Date(pickupDate);
         const returned = new Date(returnDate);
-        const noOfDays = Math.ceil((returnDate - pickupDate) / (1000 * 60 * 60 * 24));
+        const noOfDays = Math.ceil((returned - picked) / (1000 * 60 * 60 * 24));
         const price = carData.pricePerDay * noOfDays;
 
         await Booking.create({
